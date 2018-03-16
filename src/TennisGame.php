@@ -50,15 +50,8 @@ class TennisGame
 
     private function lotsOfPointsScore(): string
     {
-        if (($this->player1PointsWonOnGame - $this->player2PointsWonOnGame) == 1) {
-            $score = "Advantage player1";
-        } elseif (($this->player1PointsWonOnGame - $this->player2PointsWonOnGame) == -1) {
-            $score = "Advantage player2";
-        } elseif (($this->player1PointsWonOnGame - $this->player2PointsWonOnGame) >= 2) {
-            $score = "Win for player1";
-        } else {
-            $score = "Win for player2";
-        }
-        return $score;
+        $winner = $this->player1PointsWonOnGame > $this->player2PointsWonOnGame ? 'player1': 'player2';
+        $isFinished = abs($this->player1PointsWonOnGame - $this->player2PointsWonOnGame) >= 2;
+        return $isFinished ? "Win for $winner" : "Advantage $winner";
     }
 }
