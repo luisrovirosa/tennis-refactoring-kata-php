@@ -28,10 +28,10 @@ class TennisGame
     {
         if ($this->player1PointsWonOnGame == $this->player2PointsWonOnGame) {
             return $this->samePointsScore();
-        } elseif ($this->player1PointsWonOnGame >= 4 || $this->player2PointsWonOnGame >= 4) {
-            return $this->lotsOfPointsScore();
-        } else {
+        } elseif ($this->player1PointsWonOnGame < 4 && $this->player2PointsWonOnGame < 4) {
             return $this->firstPointsScore();
+        } else {
+            return $this->lotsOfPointsScore();
         }
     }
 
