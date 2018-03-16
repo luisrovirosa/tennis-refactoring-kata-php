@@ -50,7 +50,11 @@ class TennisGame
     private function lotsOfPointsScore(): string
     {
         $winner = $this->player1PointsWonOnGame > $this->player2PointsWonOnGame ? 'player1': 'player2';
-        $hasFinished = abs($this->player1PointsWonOnGame - $this->player2PointsWonOnGame) >= 2;
-        return $hasFinished ? "Win for $winner" : "Advantage $winner";
+        return $this->hasFinished() ? "Win for $winner" : "Advantage $winner";
+    }
+
+    private function hasFinished(): bool
+    {
+        return abs($this->player1PointsWonOnGame - $this->player2PointsWonOnGame) >= 2;
     }
 }
