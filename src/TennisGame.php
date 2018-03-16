@@ -17,7 +17,7 @@ class TennisGame
 
     public function wonPoint(string $playerName)
     {
-        if ('player1' == $playerName) {
+        if ($this->player1Name == $playerName) {
             $this->player1PointsWonOnGame++;
         } else {
             $this->player2PointsWonOnGame++;
@@ -28,7 +28,7 @@ class TennisGame
     {
         if ($this->isTied()) {
             return $this->tiedScore();
-        } elseif ($this->player1PointsWonOnGame < 4 && $this->player2PointsWonOnGame < 4) {
+        } elseif ($this->areFirstPoints()) {
             return $this->firstPointsScore();
         } elseif ($this->hasFinished()) {
             return $this->winnerScore();
@@ -66,11 +66,16 @@ class TennisGame
 
     private function winningPlayer(): string
     {
-        return $this->player1PointsWonOnGame > $this->player2PointsWonOnGame ? 'player1' : 'player2';
+        return $this->player1PointsWonOnGame > $this->player2PointsWonOnGame ? $this->player1Name : $this->player2Name;
     }
 
     private function isTied(): bool
     {
         return $this->player1PointsWonOnGame == $this->player2PointsWonOnGame;
+    }
+
+    private function areFirstPoints(): bool
+    {
+        return $this->player1PointsWonOnGame < 4 && $this->player2PointsWonOnGame < 4;
     }
 }
