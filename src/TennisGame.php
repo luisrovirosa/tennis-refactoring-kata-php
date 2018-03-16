@@ -27,7 +27,7 @@ class TennisGame
     public function getScore()
     {
         if ($this->isTied()) {
-            return $this->samePointsScore();
+            return $this->tiedScore();
         } elseif ($this->player1PointsWonOnGame < 4 && $this->player2PointsWonOnGame < 4) {
             return $this->firstPointsScore();
         } elseif ($this->hasFinished()) {
@@ -37,7 +37,7 @@ class TennisGame
         }
     }
 
-    private function samePointsScore(): string
+    private function tiedScore(): string
     {
         $scores = ['Love-All', 'Fifteen-All', 'Thirty-All'];
         return $scores[$this->player1PointsWonOnGame] ?? 'Deuce';
