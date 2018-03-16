@@ -26,7 +26,7 @@ class TennisGame
 
     public function getScore()
     {
-        if ($this->player1PointsWonOnGame == $this->player2PointsWonOnGame) {
+        if ($this->isTied()) {
             return $this->samePointsScore();
         } elseif ($this->player1PointsWonOnGame < 4 && $this->player2PointsWonOnGame < 4) {
             return $this->firstPointsScore();
@@ -67,5 +67,10 @@ class TennisGame
     private function winningPlayer(): string
     {
         return $this->player1PointsWonOnGame > $this->player2PointsWonOnGame ? 'player1' : 'player2';
+    }
+
+    private function isTied(): bool
+    {
+        return $this->player1PointsWonOnGame == $this->player2PointsWonOnGame;
     }
 }
