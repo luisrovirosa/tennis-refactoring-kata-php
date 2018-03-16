@@ -31,7 +31,7 @@ class TennisGame
         } elseif ($this->player1PointsWonOnGame < 4 && $this->player2PointsWonOnGame < 4) {
             return $this->firstPointsScore();
         } elseif ($this->hasFinished()) {
-            return $this->lotsOfPointsScore();
+            return $this->winnerScore();
         } else {
             return $this->lotsOfPointsScore();
         }
@@ -49,9 +49,14 @@ class TennisGame
         return $scores[$this->player1PointsWonOnGame] . "-" . $scores[$this->player2PointsWonOnGame];
     }
 
+    private function winnerScore(): string
+    {
+        return "Win for " . $this->winningPlayer();
+    }
+
     private function lotsOfPointsScore(): string
     {
-        return $this->hasFinished() ? "Win for " . $this->winningPlayer() : "Advantage " . $this->winningPlayer();
+        return "Advantage " . $this->winningPlayer();
     }
 
     private function hasFinished(): bool
