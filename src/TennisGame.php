@@ -4,8 +4,8 @@ namespace Codium\TennisRefactoring;
 
 class TennisGame
 {
-    private $m_score1 = 0;
-    private $m_score2 = 0;
+    private $player1PointsWonOnGame = 0;
+    private $player2PointsWonOnGame = 0;
     private $player1Name = '';
     private $player2Name = '';
 
@@ -18,17 +18,17 @@ class TennisGame
     public function wonPoint(string $playerName)
     {
         if ('player1' == $playerName) {
-            $this->m_score1++;
+            $this->player1PointsWonOnGame++;
         } else {
-            $this->m_score2++;
+            $this->player2PointsWonOnGame++;
         }
     }
 
     public function getScore()
     {
-        if ($this->m_score1 == $this->m_score2) {
+        if ($this->player1PointsWonOnGame == $this->player2PointsWonOnGame) {
             $score = $this->samePointsScore();
-        } elseif ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
+        } elseif ($this->player1PointsWonOnGame >= 4 || $this->player2PointsWonOnGame >= 4) {
             $score = $this->lotsOfPointsScore();
         } else {
             $score = $this->firstPointsScore();
@@ -39,22 +39,22 @@ class TennisGame
     private function samePointsScore(): string
     {
         $scores = ['Love-All', 'Fifteen-All', 'Thirty-All'];
-        return $scores[$this->m_score1] ?? 'Deuce';
+        return $scores[$this->player1PointsWonOnGame] ?? 'Deuce';
     }
 
     private function firstPointsScore(): string
     {
         $scores = ['Love', 'Fifteen', 'Thirty', 'Forty'];
-        return $scores[$this->m_score1] . "-" . $scores[$this->m_score2];
+        return $scores[$this->player1PointsWonOnGame] . "-" . $scores[$this->player2PointsWonOnGame];
     }
 
     private function lotsOfPointsScore(): string
     {
-        if (($this->m_score1 - $this->m_score2) == 1) {
+        if (($this->player1PointsWonOnGame - $this->player2PointsWonOnGame) == 1) {
             $score = "Advantage player1";
-        } elseif (($this->m_score1 - $this->m_score2) == -1) {
+        } elseif (($this->player1PointsWonOnGame - $this->player2PointsWonOnGame) == -1) {
             $score = "Advantage player2";
-        } elseif (($this->m_score1 - $this->m_score2) >= 2) {
+        } elseif (($this->player1PointsWonOnGame - $this->player2PointsWonOnGame) >= 2) {
             $score = "Win for player1";
         } else {
             $score = "Win for player2";
