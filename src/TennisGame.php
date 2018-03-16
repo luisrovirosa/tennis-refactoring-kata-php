@@ -45,29 +45,8 @@ class TennisGame
 
     private function firstPointsScore($score): string
     {
-        for ($i = 1; $i < 3; $i++) {
-            if ($i == 1) {
-                $tempScore = $this->m_score1;
-            } else {
-                $score .= "-";
-                $tempScore = $this->m_score2;
-            }
-            switch ($tempScore) {
-                case 0:
-                    $score .= "Love";
-                    break;
-                case 1:
-                    $score .= "Fifteen";
-                    break;
-                case 2:
-                    $score .= "Thirty";
-                    break;
-                case 3:
-                    $score .= "Forty";
-                    break;
-            }
-        }
-        return $score;
+        $scores = ['Love', 'Fifteen', 'Thirty', 'Forty'];
+        return $scores[$this->m_score1] . "-" . $scores[$this->m_score2];
     }
 
     private function lotsOfPointsScore(): string
