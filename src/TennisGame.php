@@ -51,8 +51,7 @@ class TennisGame
 
     private function lotsOfPointsScore(): string
     {
-        $winner = $this->winningPlayer();
-        return $this->hasFinished() ? "Win for $winner" : "Advantage $winner";
+        return $this->hasFinished() ? "Win for " . $this->winningPlayer() : "Advantage " . $this->winningPlayer();
     }
 
     private function hasFinished(): bool
