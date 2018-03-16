@@ -26,13 +26,12 @@ class TennisGame
 
     public function getScore()
     {
-        $score = "";
         if ($this->m_score1 == $this->m_score2) {
             $score = $this->samePointsScore();
         } elseif ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
             $score = $this->lotsOfPointsScore();
         } else {
-            $score = $this->firstPointsScore($score);
+            $score = $this->firstPointsScore();
         }
         return $score;
     }
@@ -43,7 +42,7 @@ class TennisGame
         return $scores[$this->m_score1] ?? 'Deuce';
     }
 
-    private function firstPointsScore($score): string
+    private function firstPointsScore(): string
     {
         $scores = ['Love', 'Fifteen', 'Thirty', 'Forty'];
         return $scores[$this->m_score1] . "-" . $scores[$this->m_score2];
