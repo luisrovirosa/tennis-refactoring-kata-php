@@ -27,13 +27,12 @@ class TennisGame
     public function getScore()
     {
         if ($this->player1PointsWonOnGame == $this->player2PointsWonOnGame) {
-            $score = $this->samePointsScore();
+            return $this->samePointsScore();
         } elseif ($this->player1PointsWonOnGame >= 4 || $this->player2PointsWonOnGame >= 4) {
-            $score = $this->lotsOfPointsScore();
+            return $this->lotsOfPointsScore();
         } else {
-            $score = $this->firstPointsScore();
+            return $this->firstPointsScore();
         }
-        return $score;
     }
 
     private function samePointsScore(): string
@@ -51,7 +50,7 @@ class TennisGame
     private function lotsOfPointsScore(): string
     {
         $winner = $this->player1PointsWonOnGame > $this->player2PointsWonOnGame ? 'player1': 'player2';
-        $isFinished = abs($this->player1PointsWonOnGame - $this->player2PointsWonOnGame) >= 2;
-        return $isFinished ? "Win for $winner" : "Advantage $winner";
+        $hasFinished = abs($this->player1PointsWonOnGame - $this->player2PointsWonOnGame) >= 2;
+        return $hasFinished ? "Win for $winner" : "Advantage $winner";
     }
 }
